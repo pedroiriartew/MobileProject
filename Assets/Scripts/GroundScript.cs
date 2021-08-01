@@ -8,10 +8,11 @@ public class GroundScript : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Rock"))
         {
-            //Rock rock = collision.gameObject.GetComponent<Rock>();
+            Rock rock = collision.gameObject.GetComponent<Rock>();
 
-            //rock.Velocity = Vector3.zero;
-            //rock.DestroyRock();
+            rock.getRigidBody().velocity = Vector2.zero;//Setear la velocidad en 0
+
+            rock.DestroyRock();
         }
     }
 

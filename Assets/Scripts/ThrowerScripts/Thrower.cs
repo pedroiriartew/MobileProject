@@ -13,11 +13,11 @@ public class Thrower : MonoBehaviour
     [SerializeField] private float _maxThrowSpeed;
 
     [SerializeField] private float _timeBetweenThrows;
-    //[SerializeField] private Rock _rock;
+    [SerializeField] private Rock _rock;
 
     public event AnimThrower ThrowAnimation;
 
-    private Vector3 _initialVelocity;
+    private Vector3 _velocity;
 
 
     private void Start()
@@ -31,41 +31,27 @@ public class Thrower : MonoBehaviour
         {
             yield return new WaitForSeconds(_timeBetweenThrows);
 
-            _initialVelocity = CalculateVelocity();
+            _velocity = CalculateVelocity();
 
             ThrowAnimation?.Invoke();            
         }
     }
 
-    //public void ThrowRock()
-    //{
-    //    Rock rock = Instantiate(_rock, transform.position, Quaternion.identity);
+    public void ThrowRock()
+    {
+        Rock rock = Instantiate(_rock, transform.position, Quaternion.identity);
 
-    //    rock.Velocity = _initialVelocity;
-
-    //    PhysicsHandler.Instance.AddObject(rock);
-    //}
+        rock.getRigidBody().AddForce(_velocity);
+    }
 
     private Vector3 CalculateVelocity()
     {
         float angle = Random.Range(_minThrowAngle, _maxThrowAngle);
-        float launchSpeed = Random.Range(_minThrowSpeed, _maxThrowSpeed);//Velocity Module
+        float force = Random.Range(_minThrowSpeed, _maxThrowSpeed);
 
-        float cosAngle = Mathf.Cos(angle * Mathf.Deg2Rad);
-        float sinAngle = Mathf.Sin(angle * Mathf.Deg2Rad);
+        Vector3 dir = Quaternion.AngleAxis(angle, Vector3.forward) * Vector3.right;
 
-        //Debug.Log(cosAngle);
-        //Debug.Log(sinAngle);
-
-        float velX = cosAngle * launchSpeed;
-        float velY = sinAngle * launchSpeed;
-
-        //Debug.Log(velX);
-        //Debug.Log(velY);
-
-        Vector3 velocity = new Vector3(velX, velY);
-
-        //Debug.Log(velocity);
+        Vector3 velocity = dir * force;
 
         return velocity;
     }

@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour
 
     private PlayerMovement _playerMovementReference;
     private PlayerCollisionHandler _playerCollisionsReference;
-    private CoinSpawner _coinSpawner;
+    [SerializeField] private CoinSpawner _coinSpawner;
     private int _rocksAmount = 0;
     private int _coinsAmount = 0;
 
@@ -39,6 +39,11 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
         AdvanceLevelTime();
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            _coinSpawner.SpawnCoin(_playerMovementReference.transform.position);
+        }
     }
 
     private void AdvanceLevelTime()

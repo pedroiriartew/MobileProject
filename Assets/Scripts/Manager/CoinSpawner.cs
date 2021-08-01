@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CoinSpawner : MonoBehaviour
 {
-    [SerializeField] private UnityEngine.GameObject _coin;
+    [SerializeField] private GameObject _coin;
 
     private float _posMinValue = -4f;
     private float _posMaxValue = 16f;

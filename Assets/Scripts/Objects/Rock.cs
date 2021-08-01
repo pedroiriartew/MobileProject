@@ -4,15 +4,28 @@ using UnityEngine;
 
 public class Rock : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private float _lifeSpan = 5;
+    private Rigidbody2D _rb;
+
+    private void Awake()
     {
-        
+        _rb = GetComponent<Rigidbody2D>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void DestroyRock()
     {
-        
+        StartCoroutine(DestroyCoroutine());
+    }
+
+    public IEnumerator DestroyCoroutine()
+    {
+        yield return new WaitForSeconds(_lifeSpan);
+
+        Destroy(gameObject);
+    }
+
+    public Rigidbody2D getRigidBody()
+    {
+        return _rb;
     }
 }
