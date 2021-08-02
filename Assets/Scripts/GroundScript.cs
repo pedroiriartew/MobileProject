@@ -11,7 +11,7 @@ public class GroundScript : MonoBehaviour
             Rock rock = collision.gameObject.GetComponent<Rock>();
 
             rock.getRigidBody().velocity = Vector2.zero;//Setear la velocidad en 0
-            rock.getRigidBody().sharedMaterial.bounciness = 0;
+            //rock.getRigidBody().sharedMaterial.bounciness = 0;
 
             rock.DestroyRock();
         }
