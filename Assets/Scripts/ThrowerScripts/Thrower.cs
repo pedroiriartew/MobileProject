@@ -13,7 +13,6 @@ public class Thrower : MonoBehaviour
     [SerializeField] private float _maxThrowSpeed;
 
     [SerializeField] private float _timeBetweenThrows;
-    [SerializeField] private Rock _rock;
 
     public event AnimThrower ThrowAnimation;
 
@@ -39,9 +38,15 @@ public class Thrower : MonoBehaviour
 
     public void ThrowRock()
     {
-        Rock rock = Instantiate(_rock, transform.position, Quaternion.identity);
+        GameObject rock = PoolManager.Instance.GetPoolObject("Rock");
+        rock.AddComponent<Rock>();
 
-        rock.getRigidBody().AddForce(_velocity);
+        rock.transform.position = transform.position;
+        rock.transform.rotation = Quaternion.identity;
+        rock.SetActive(true);
+
+        //Pero que chanchada
+        rock.GetComponent<Rock>().getRigidBody().AddForce(_velocity);
     }
 
     private Vector3 CalculateVelocity()

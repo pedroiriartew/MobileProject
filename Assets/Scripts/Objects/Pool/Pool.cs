@@ -48,7 +48,7 @@ public class Pool : MonoBehaviour
     }
 
 
-    private void MoveToCemetery(GameObject _objectPool)
+    public void MoveToCemetery(GameObject _objectPool)
     {
         _objectPool.SetActive(false);
         _objectPool.transform.position = _cemetery;

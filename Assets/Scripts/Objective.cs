@@ -4,15 +4,18 @@ using UnityEngine;
 
 public class Objective : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public delegate void RockCollision();
 
-    // Update is called once per frame
-    void Update()
+    public event RockCollision IsRockColliding;
+
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        
+        if (collision.gameObject.CompareTag("Rock"))
+        {
+            IsRockColliding?.Invoke();
+            Rock rock = collision.gameObject.GetComponent<Rock>();
+            rock.DestroyOnObjective();
+        }
+
     }
 }

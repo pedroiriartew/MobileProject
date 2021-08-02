@@ -4,14 +4,22 @@ using UnityEngine;
 
 public class PoolManager : MonoBehaviour
 {
-    //Todas las pools de la escena
-    [SerializeField] private PoolData[] _poolsData;
-
-    //Variables de Uso
-    private Pool[] _pools;
+    #region Singleton
+    private static PoolManager _instance;
+    public static PoolManager Instance { get { return _instance; } }
 
     private void Awake()
     {
+        if (!_instance)
+        {
+            _instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+
         _pools = new Pool[_poolsData.Length];
 
         for (int i = 0; i < _pools.Length; i++)
@@ -20,8 +28,16 @@ public class PoolManager : MonoBehaviour
             _pools[i].gameObject.name = _poolsData[i].Name;
 
             _pools[i].Initialize(_poolsData[i].Name, _poolsData[i].PoolObject, _poolsData[i].PoolCount, _poolsData[i].Cemetery, _pools[i].transform);
-        }        
+        }
     }
+
+    #endregion
+
+    //Todas las pools de la escena
+    [SerializeField] private PoolData[] _poolsData;
+
+    //Variables de Uso
+    private Pool[] _pools;
 
     /// <summary>
     /// Devuelve el Objeto de la Pool y si no hay nada devuelve null. Hay que atajarse.
@@ -39,7 +55,18 @@ public class PoolManager : MonoBehaviour
             }
         }
 
-        return null;//Mala práctica y hay que cuidarse de esto.
+        return null;//Mala práctica y hay que cuidarse de esto.Como ahora no tengo ni idea de como solucionarlo ya fue
+    }
+
+    public void SendToCemetery(string name , GameObject pooledObject)
+    {
+        foreach (Pool pool in _pools)
+        {
+            if (pool.name == name)
+            {
+                pool.MoveToCemetery(pooledObject);
+            }
+        }
     }
 
 }

@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour
 
     private PlayerMovement _playerMovementReference;
     private PlayerCollisionHandler _playerCollisionsReference;
+    [SerializeField] private Objective _objectiveReference;
     [SerializeField] private CoinSpawner _coinSpawner;
     private int _rocksAmount = 0;
     private int _coinsAmount = 0;
@@ -34,16 +35,12 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         _playerCollisionsReference.Coin += UpdateCoinCount;
+        _objectiveReference.IsRockColliding += UpdateRockCount;
     }
 
     private void Update()
     {
         AdvanceLevelTime();
-
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            _coinSpawner.SpawnCoin(_playerMovementReference.transform.position);
-        }
     }
 
     private void AdvanceLevelTime()
@@ -63,6 +60,7 @@ public class GameManager : MonoBehaviour
     private void UnsuscribeToEvents()
     {
         _playerCollisionsReference.Coin -= UpdateCoinCount;
+        _objectiveReference.IsRockColliding -= UpdateRockCount;
     }
 
     public void UpdateCoinCount()
@@ -72,7 +70,7 @@ public class GameManager : MonoBehaviour
         UpdateCoins?.Invoke(_coinsAmount);
     }
 
-    public void UpdateRockCount()//Esto va a ir en un evento cuando el jugador envoque una piedra.
+    public void UpdateRockCount()
     {
         _rocksAmount++;
 

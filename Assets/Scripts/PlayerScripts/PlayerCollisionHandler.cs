@@ -14,16 +14,5 @@ public class PlayerCollisionHandler : MonoBehaviour
         {
             Coin?.Invoke();
         }
-        if (collision.gameObject.CompareTag("Obstacle"))
-        {
-            if (collision.gameObject.name == "Hydrant")
-            {
-                Debug.Log("colisionando con el hidrante");
-            }
-            if (collision.gameObject.name == "Wheels")
-            {
-                Debug.Log("colisionando con las ruedas");
-            }
-        }
     }
 }

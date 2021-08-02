@@ -17,11 +17,16 @@ public class Rock : MonoBehaviour
         StartCoroutine(DestroyCoroutine());
     }
 
+    public void DestroyOnObjective()
+    {
+        PoolManager.Instance.SendToCemetery("Rock", gameObject);
+    }
+
     public IEnumerator DestroyCoroutine()
     {
         yield return new WaitForSeconds(_lifeSpan);
 
-        Destroy(gameObject);
+        PoolManager.Instance.SendToCemetery("Rock", gameObject);
     }
 
     public Rigidbody2D getRigidBody()

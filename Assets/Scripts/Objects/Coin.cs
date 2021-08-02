@@ -26,7 +26,7 @@ public class Coin : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            Destroy(gameObject);
+            PoolManager.Instance.SendToCemetery("Coin", gameObject);
         }
     }
 }
