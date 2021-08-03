@@ -6,7 +6,7 @@ SpriteAtlas:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Images
+  m_Name: Sprites
   m_EditorData:
     serializedVersion: 2
     textureSettings:
@@ -23,7 +23,7 @@ SpriteAtlas:
     platformSettings:
     - serializedVersion: 3
       m_BuildTarget: DefaultTexturePlatform
-      m_MaxTextureSize: 2048
+      m_MaxTextureSize: 128
       m_ResizeAlgorithm: 0
       m_TextureFormat: -1
       m_TextureCompression: 1
@@ -35,27 +35,21 @@ SpriteAtlas:
       m_ForceMaximumCompressionQuality_BC6H_BC7: 0
     packingSettings:
       serializedVersion: 2
-      padding: 4
+      padding: 8
       blockOffset: 1
       allowAlphaSplitting: 0
       enableRotation: 1
       enableTightPacking: 1
     variantMultiplier: 1
     packables:
-    - {fileID: 102900000, guid: abf9039d845891d469016a4937bc8c4e, type: 3}
+    - {fileID: 102900000, guid: b80dd1670d9de464f93f8d95e33bfdb9, type: 3}
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
-  - {fileID: 21300000, guid: 15ec59c1e657b2d4d8f4123da65eac43, type: 3}
-  - {fileID: 21300000, guid: 8a6dd0523eb47354984e4453a0f5b974, type: 3}
-  - {fileID: 21300000, guid: 85167f472a7225f4090c5b5b477f76f9, type: 3}
-  - {fileID: 21300000, guid: 9dfca49b1bf9f0248999226312e1790a, type: 3}
-  - {fileID: 21300000, guid: 9a03a3ddd36f6a24ab947b9ed3a6478f, type: 3}
+  - {fileID: 21300000, guid: 6ecdf544983e4ad4c96fd4bd28845f1c, type: 3}
+  - {fileID: 21300000, guid: 574d659ae114d034a998f7ccccb1226e, type: 3}
   m_PackedSpriteNamesToIndex:
-  - tile000
-  - tile001
-  - road&border
-  - boxes&container
-  - wheels&hydrant
-  m_Tag: Images
+  - Rock
+  - Coin
+  m_Tag: Sprites
   m_IsVariant: 0
