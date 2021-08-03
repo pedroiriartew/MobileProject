@@ -26,6 +26,8 @@ public class GameManager : MonoBehaviour
     private int _rocksAmount = 0;
     private int _coinsAmount = 0;
 
+    [SerializeField] private AudioClip _clip;
+
     private void Awake()
     {
         _playerMovementReference = FindObjectOfType<PlayerMovement>();
@@ -36,6 +38,7 @@ public class GameManager : MonoBehaviour
     {
         _playerCollisionsReference.Coin += UpdateCoinCount;
         _objectiveReference.IsRockColliding += UpdateRockCount;
+        AudioManager.Instance.PlayClip(_clip, 0.1f, true, AudioManager.ChannelType.BackgroundMusic);
     }
 
     private void Update()

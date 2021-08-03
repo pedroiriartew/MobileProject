@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Coin : MonoBehaviour
 {
+    [SerializeField] private AudioClip _clip;
     [SerializeField] private float _lifespan = 20f;
 
     private void Update()
@@ -27,6 +28,7 @@ public class Coin : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             PoolManager.Instance.SendToCemetery("Coin", gameObject);
+            AudioManager.Instance.PlayClip(_clip, 1, false, AudioManager.ChannelType.Sfx);
         }
     }
 }

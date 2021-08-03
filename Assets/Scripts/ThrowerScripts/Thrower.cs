@@ -6,6 +6,8 @@ public class Thrower : MonoBehaviour
 {
     public delegate void AnimThrower();
 
+    [SerializeField] private AudioClip _clip;
+
     [SerializeField] private float _minThrowAngle;
     [SerializeField] private float _maxThrowAngle;
 
@@ -38,6 +40,8 @@ public class Thrower : MonoBehaviour
 
     public void ThrowRock()
     {
+        AudioManager.Instance.PlayClip(_clip, 1, false, AudioManager.ChannelType.Sfx);
+
         GameObject rock = PoolManager.Instance.GetPoolObject("Rock");
         rock.AddComponent<Rock>();
 

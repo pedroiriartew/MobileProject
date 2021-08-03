@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
+    #region Singleton
+    private static AudioManager _instance;
+    public static AudioManager Instance { get { return _instance; } }
+    #endregion
+
     public enum ChannelType
     {
         Sfx,
@@ -11,7 +16,6 @@ public class AudioManager : MonoBehaviour
         UIfx,
         Sfx3D
     }
-
 
     [SerializeField] private int _sfxChannels = 5;
     [SerializeField] private int _backgroundMusicChannels = 3;
@@ -26,6 +30,16 @@ public class AudioManager : MonoBehaviour
 
     private void Awake()
     {
+        if (!_instance)
+        {
+            _instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+
         _sfx = new AudioSource[_sfxChannels];
         Initialize2DChannels(_sfx);
 
@@ -37,7 +51,6 @@ public class AudioManager : MonoBehaviour
 
         _3Dsfx = new AudioSource[_3DsfxChannels];
         Initialize2DChannels(_3Dsfx);
-
     }
 
     private void Initialize2DChannels(AudioSource[] sources)
