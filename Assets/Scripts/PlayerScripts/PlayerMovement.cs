@@ -14,6 +14,7 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] private Rigidbody2D _rb;
 
+
     private Vector2 _dir;
 
     private void Update()
@@ -23,6 +24,12 @@ public class PlayerMovement : MonoBehaviour
             _dir = new Vector2(_joystick.GetAxisHorizontal(), 0);
 
             RunAnimation?.Invoke(Mathf.Abs(_joystick.GetAxisHorizontal()), _joystick.GetAxisHorizontal());//Absolute value to avoid "-1" case. The second value is for the Flip Method; "-1" means left.
+        }
+
+        if (_joystick.GetAxisHorizontal() ==0)
+        {
+            _dir = Vector2.zero;
+            _rb.velocity = Vector2.zero;
         }
     }
 

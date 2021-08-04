@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class JoystickInput : MonoBehaviour
 {
+    public delegate void AnimPlayer(float speed, float flip);
+    public event AnimPlayer RunAnimation;
+
     [SerializeField] private RectTransform _stick;
     [SerializeField] private RectTransform _stickArea;
 
@@ -13,6 +16,11 @@ public class JoystickInput : MonoBehaviour
     private void Awake()
     {
         _maxMovement = _stickArea.sizeDelta.x / 2;
+    }
+
+    private void Start()
+    {
+        
     }
 
     private void StickMovement()
@@ -43,6 +51,8 @@ public class JoystickInput : MonoBehaviour
     public void OnMouseButtonUp()
     {
         _stick.localPosition = Vector3.zero;
+
+        RunAnimation?.Invoke(0f, 1f);
     }
 
     public void OnMouseButtonDown()

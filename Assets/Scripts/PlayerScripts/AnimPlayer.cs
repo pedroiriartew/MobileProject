@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class AnimPlayer : MonoBehaviour
 {
-    [SerializeField] private Animator anim;
-    [SerializeField] private PlayerMovement player;
+    [SerializeField] private Animator _anim;
+    [SerializeField] private PlayerMovement _player;
+    [SerializeField] private JoystickInput _joystickInput;
+
 
     private SpriteRenderer _spriteRenderer;
 
@@ -16,12 +18,13 @@ public class AnimPlayer : MonoBehaviour
 
     private void Start()
     {
-        player.RunAnimation += RunAnimation;
+        _player.RunAnimation += RunAnimation;
+        _joystickInput.RunAnimation += RunAnimation;
     }
 
     public void RunAnimation(float speed, float flip)
     {
-        anim.SetFloat("Speed", speed);
+        _anim.SetFloat("Speed", speed);
 
         _spriteRenderer.flipX = Flip(flip);
     }
