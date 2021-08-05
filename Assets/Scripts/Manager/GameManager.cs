@@ -36,7 +36,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        _playerCollisionsReference.Coin += UpdateCoinCount;
+        _playerCollisionsReference.UpdateCoinCount += UpdateCoinCount;
         _objectiveReference.IsRockColliding += UpdateRockCount;
         AudioManager.Instance.PlayClip(_clip, 0.1f, true, AudioManager.ChannelType.BackgroundMusic);
     }
@@ -62,7 +62,7 @@ public class GameManager : MonoBehaviour
 
     private void UnsuscribeToEvents()
     {
-        _playerCollisionsReference.Coin -= UpdateCoinCount;
+        _playerCollisionsReference.UpdateCoinCount -= UpdateCoinCount;
         _objectiveReference.IsRockColliding -= UpdateRockCount;
     }
 

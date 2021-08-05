@@ -25,7 +25,6 @@ public class Coin : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log("Entra en colision enter");
         if (collision.gameObject.tag == "Player")
         {
             PoolManager.Instance.SendToCemetery("Coin", gameObject);

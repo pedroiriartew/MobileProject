@@ -6,7 +6,7 @@ public class PlayerCollisionHandler : MonoBehaviour
 {
     public delegate void CoinCollision();
 
-    public event CoinCollision Coin;
+    public event CoinCollision UpdateCoinCount;
 
     private void OnControllerColliderHit(ControllerColliderHit hit)
     {
@@ -16,7 +16,15 @@ public class PlayerCollisionHandler : MonoBehaviour
 
         if (hit.gameObject.CompareTag("Coin"))
         {
-            Coin?.Invoke();
+            UpdateCoinCount?.Invoke();
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Coin"))
+        {
+            UpdateCoinCount?.Invoke();
         }
     }
 }
