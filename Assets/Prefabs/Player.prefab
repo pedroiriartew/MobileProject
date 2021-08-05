@@ -14,9 +14,8 @@ GameObject:
   - component: {fileID: 668443912403377301}
   - component: {fileID: 668443912403377302}
   - component: {fileID: 668443912403377307}
-  - component: {fileID: 668443912403377306}
-  - component: {fileID: 668443912403377305}
-  m_Layer: 0
+  - component: {fileID: 668443912947853190}
+  m_Layer: 8
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -101,7 +100,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b6df7a7ebc8ee04ca4a7187694b8e75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 0.2
+  _speed: 15
+  _joystick: {fileID: 0}
+  _characterController: {fileID: 668443912947853190}
 --- !u!114 &668443912403377301
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -126,8 +127,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 422f83c629169964496984d0683f9e64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  anim: {fileID: 668443912403377307}
-  player: {fileID: 668443912403377300}
+  _anim: {fileID: 668443912403377307}
+  _player: {fileID: 668443912403377300}
+  _joystickInput: {fileID: 0}
 --- !u!95 &668443912403377307
 Animator:
   serializedVersion: 3
@@ -147,43 +149,24 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!70 &668443912403377306
-CapsuleCollider2D:
+--- !u!143 &668443912947853190
+CharacterController:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 668443912403377297}
-  m_Enabled: 1
-  m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.0034941833, y: -0.032146256}
-  m_Size: {x: 0.15088257, y: 0.25291213}
-  m_Direction: 0
---- !u!50 &668443912403377305
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 668443912403377297}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 4
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Height: 0.32
+  m_Radius: 0.16
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &668443912443191295
 GameObject:
   m_ObjectHideFlags: 0
@@ -278,7 +261,6 @@ GameObject:
   - component: {fileID: 668443912496832857}
   - component: {fileID: 668443912496832856}
   - component: {fileID: 668443912496832863}
-  - component: {fileID: 668443912496832862}
   m_Layer: 0
   m_Name: BouncyBox
   m_TagString: Untagged
@@ -376,15 +358,3 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.4144003, y: 0.3428026}
   m_EdgeRadius: 0
---- !u!114 &668443912496832862
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 668443912496832858}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 59a90387ad1ca454094f32ffc5f1ad59, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

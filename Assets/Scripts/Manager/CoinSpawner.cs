@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class CoinSpawner : MonoBehaviour
 {
-
     private float _posMinValue = -4f;
     private float _posMaxValue = 16f;
 
@@ -18,12 +17,8 @@ public class CoinSpawner : MonoBehaviour
         } while (_spawnPosition == playerPosition);
 
         GameObject coin = PoolManager.Instance.GetPoolObject("Coin");
-        coin.AddComponent<Coin>();
-
-        coin.transform.position = transform.position;
+        coin.transform.position = _spawnPosition;
         coin.transform.rotation = Quaternion.identity;
         coin.SetActive(true);
-
-        Instantiate(coin,_spawnPosition, Quaternion.identity);
     }
 }

@@ -12,48 +12,27 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] private JoystickInput _joystick;
 
-    [SerializeField] private Rigidbody2D _rb;
-
-
-    private Vector2 _dir;
+    [SerializeField] private CharacterController _characterController;
 
     private void Update()
     {
+        MovePlayer();
+    }
+
+    private void MovePlayer()
+    {
         if (_joystick.GetAxisHorizontal() != 0)
         {
-            _dir = new Vector2(_joystick.GetAxisHorizontal(), 0);
+            Vector3 dir = new Vector3(_joystick.GetAxisHorizontal(), 0f, 0f);
+
+            _characterController.Move(dir * _speed * Time.deltaTime);
 
             RunAnimation?.Invoke(Mathf.Abs(_joystick.GetAxisHorizontal()), _joystick.GetAxisHorizontal());//Absolute value to avoid "-1" case. The second value is for the Flip Method; "-1" means left.
         }
 
-        if (_joystick.GetAxisHorizontal() ==0)
-        {
-            _dir = Vector2.zero;
-            _rb.velocity = Vector2.zero;
-        }
-    }
-
-    private void FixedUpdate()
-    {
-        _rb.AddForce(_dir * _speed);
+        //if (_joystick.GetAxisHorizontal() == 0)
+        //{
+        //    _dir = Vector3.zero;
+        //}
     }
 }
-
-    //// Update is called once per frame
-    //void Update()
-    //{
-    //    GetInput();
-    //    MoveHero();
-    //}
-
-    //private void MoveHero()
-    //{
-    //    transform.Translate( Vector2.right * _horizontal * _speed * Time.deltaTime);
-    //}
-
-    //private void GetInput()
-    //{
-    //    _horizontal = Input.GetAxis("Horizontal");
-
-    //    RunAnimation?.Invoke(Mathf.Abs(_horizontal), _horizontal);//Absolute value to avoid "-1" case. The second value is for the Flip Method; "-1" means left.
-    //}

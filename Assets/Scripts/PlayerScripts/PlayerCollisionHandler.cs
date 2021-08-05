@@ -8,9 +8,13 @@ public class PlayerCollisionHandler : MonoBehaviour
 
     public event CoinCollision Coin;
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnControllerColliderHit(ControllerColliderHit hit)
     {
-        if (collision.gameObject.CompareTag("Coin"))
+        Debug.Log("Colisión detectada");
+
+        Debug.Log(hit.collider.attachedRigidbody.position);
+
+        if (hit.gameObject.CompareTag("Coin"))
         {
             Coin?.Invoke();
         }
